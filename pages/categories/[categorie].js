@@ -20,12 +20,7 @@ const Category = ({ singleCategory }) => (
     <Title bgTitle={singleCategory.name} center withRow />
     <ItemsList>
       {!singleCategory.recettes.length && (
-        <Title
-          bgTitle="Sorry, aucune recette pour le moment"
-          center
-          withRow
-          center
-        />
+        <Title bgTitle="Sorry, aucune recette pour le moment" center withRow />
       )}
       {singleCategory.recettes.map(item => (
         <Card key={item.id} {...item} />

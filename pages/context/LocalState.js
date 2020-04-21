@@ -18,10 +18,6 @@ function CartStateProvider({ children }) {
   // const [user, setUser] = useState();
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState([]);
-  // const userLogin = person => {
-  //   setUserFromLS(person);
-  //   return localStorage.setItem('user', JSON.stringify(person));
-  // };
 
   useEffect(() => {
     const abortController = new AbortController();
