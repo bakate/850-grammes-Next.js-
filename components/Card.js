@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ItemStyles from './styles/ItemStyles';
 import Title from './Title';
 
@@ -10,7 +10,7 @@ const Card = ({ image, title, id, duration, category }) => {
     <ItemStyles>
       <Title title={title} center />
       <div>
-        <Link href={{ pathname: 'recipe', query: { id } }}>
+        <Link href="/recettes/[id]" as={`/recettes/${id}`}>
           <a>
             <img src={firstImage.url} alt={title} />
           </a>

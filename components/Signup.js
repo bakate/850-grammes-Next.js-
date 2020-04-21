@@ -1,29 +1,29 @@
 import React from 'react';
-import { useMutation, gql } from '@apollo/client';
+// import { useMutation, gql } from '@apollo/client';
 import FormStyles from './styles/FormStyles';
 import useForm from '../lib/useForm';
 import Title from './Title';
-import { CURRENT_USER_QUERY } from './User';
+// import { CURRENT_USER_QUERY } from './User';
 
 // TODO! GO further
-const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
-    $email: String!
-    $username: String!
-    $password: String!
-  ) {
-    register(
-      input: { email: $email, username: $username, password: $password }
-    ) {
-      user {
-        id
-        username
-        email
-      }
-      jwt
-    }
-  }
-`;
+// const SIGNUP_MUTATION = gql`
+//   mutation SIGNUP_MUTATION(
+//     $email: String!
+//     $username: String!
+//     $password: String!
+//   ) {
+//     register(
+//       input: { email: $email, username: $username, password: $password }
+//     ) {
+//       user {
+//         id
+//         username
+//         email
+//       }
+//       jwt
+//     }
+//   }
+// `;
 
 // resetForm,
 const Signup = () => {
@@ -33,14 +33,14 @@ const Signup = () => {
     password: '',
   });
   const isEmpty = !inputs.username || !inputs.email || !inputs.password;
-  const [signup, { error, loading, data }] = useMutation(SIGNUP_MUTATION, {
-    variables: inputs,
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
-  });
+  // const [signup, { error, loading, data }] = useMutation(SIGNUP_MUTATION, {
+  //   variables: inputs,
+  //   refetchQueries: [{ query: CURRENT_USER_QUERY }],
+  // });
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await signup();
+    // await signup();
     clearForm();
   };
   return (
@@ -51,7 +51,7 @@ const Signup = () => {
         {isEmpty && (
           <p className="form-empty">Pense à remplir tous les champs</p>
         )}
-        {error && <p>Error: {error.message}</p>}
+        {/* {error && <p>Error: {error.message}</p>} */}
         <label htmlFor="username">
           Username
           <input

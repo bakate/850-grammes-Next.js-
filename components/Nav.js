@@ -1,43 +1,32 @@
-import React from 'react';
+/* eslint-disable react/display-name */
 import Link from 'next/link';
-// import { gql, useQuery } from '@apollo/client';
+import React from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { useInfos } from '../pages/context/LocalState';
 import { NavStyles, OptionStyles } from './styles/NavStyles';
 
-// const CATEGORIES_QUERY = gql`
-//   query CATEGORIES_QUERY {
-//     categories {
-//       id
-//       name
-//     }
-//   }
-// `;
+export const CategoriesDropdown = () => {
+  const { categories } = useInfos();
 
-const CategoriesDropdown = ({ categories }) => (
-  // const { error, loading, data } = useQuery(CATEGORIES_QUERY);
-  // if (loading) return <p>"Loading"</p>;
-  // if (error) return `Error ${error.message}`;
-  <OptionStyles>
-    <button type="button">
-      Recettes
-      <AiFillCaretDown />
-    </button>
-    <div className="categories">
-      {categories.map(item => (
-        <li className="drops" key={item.id}>
-          <Link
-            href={{
-              pathname: 'category',
-              query: { id: item.id },
-            }}
-          >
-            <a>{item.name}</a>
-          </Link>
-        </li>
-      ))}
-    </div>
-  </OptionStyles>
-);
+  return (
+    <OptionStyles>
+      <button type="button">
+        Recettes
+        <AiFillCaretDown />
+      </button>
+      <div className="categories">
+        {categories?.map(item => (
+          <li className="drops" key={item.id}>
+            <Link href="/categories/[categorie]" as={`/categories/${item.id}`}>
+              <a>{item.name}</a>
+            </Link>
+          </li>
+        ))}
+      </div>
+    </OptionStyles>
+  );
+};
+
 const Nav = () => (
   <NavStyles>
     <Link href="/">
@@ -59,5 +48,4 @@ const Nav = () => (
     </Link>
   </NavStyles>
 );
-
 export default Nav;

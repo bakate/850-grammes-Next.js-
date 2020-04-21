@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import NProgress from 'nprogress';
 import Router from 'next/router';
+import NProgress from 'nprogress';
 import Nav from './Nav';
-// import AutoComplete from './Search';
+import AutoComplete from './Search';
 import { HeaderStyles, LogoStyles } from './styles/HeaderStyles';
 
 Router.onRouteChangeStart = () => {
@@ -28,7 +28,7 @@ const Header = () => (
           </a>
         </Link>
       </LogoStyles>
-      {/* <AutoComplete /> */}
+      <AutoComplete />
       <Nav />
     </div>
   </HeaderStyles>
