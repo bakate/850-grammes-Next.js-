@@ -125,11 +125,11 @@ const SignUpPage = () => {
 SignUpPage.getInitialProps = async ctx => {
   const isAuthenticated = !!parseCookies(ctx).fromClientSide;
 
-  if (isAuthenticated && ['/signup', '/signin'].indexOf(ctx.asPath) > -1) {
+  if (isAuthenticated && ['/signup'].indexOf(ctx.asPath) > -1) {
     if (!ctx.req) {
       // client-side
       Router.replace('/');
-      cogoToast.info('Tu es deja loguee papi');
+      cogoToast.info('Tu es deja logu&eacute; papi');
     }
     if (ctx.req) {
       ctx.res.writeHead(302, {

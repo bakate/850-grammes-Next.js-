@@ -13,6 +13,9 @@ export default function Recipe({ singleRecipe }) {
   if (!router.isFallback && !id) {
     return <h2>Error papi</h2>;
   }
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   const image = singleRecipe ? singleRecipe.image : [];
   const [first, ...others] = image;

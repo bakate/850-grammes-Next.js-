@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 import Card from '../../components/Card';
@@ -22,18 +23,29 @@ export const ItemsList = styled.div`
   }
 `;
 
-const Category = ({ singleCategory }) => (
-  <Center>
-    <Title bgTitle={singleCategory?.name} center withRow />
-    <ItemsList>
-      {!singleCategory.recettes.length && (
-        <Title bgTitle="Sorry, aucune recette pour le moment" center withRow />
-      )}
-      {singleCategory?.recettes.map(item => <Card key={item.id} {...item} />)}
-    </ItemsList>
-  </Center>
-);
-
+const Category = ({ singleCategory }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <Center>
+      <Title bgTitle={singleCategory?.name} center withRow />
+      <ItemsList>
+        {!singleCategory.recettes?.length && (
+          <Title
+            bgTitle="Sorry, aucune recette pour le moment"
+            center
+            withRow
+          />
+        )}
+        {singleCategory?.recettes?.map(item => (
+          <Card key={item.id} {...item} />
+        ))}
+      </ItemsList>
+    </Center>
+  );
+};
 export async function getStaticProps({ params }) {
   const singleCategory = await getSingleCategory(params.categorie);
   return {
