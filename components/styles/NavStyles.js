@@ -8,7 +8,7 @@ const NavStyles = styled.ul`
   font-size: 1.5rem;
   a,
   button {
-    padding: 1rem 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -18,22 +18,22 @@ const NavStyles = styled.ul`
     background: none;
     border: 0;
     cursor: pointer;
-    color: ${props => props.theme.black};
+    color: ${({ theme }) => theme.black};
     font-weight: 800;
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       font-size: 10px;
-      padding: 0 10px;
+      padding: 0 5px;
     }
     &:before {
       content: '';
-      width: 2px;
-      background: ${({ theme }) => theme.lightGrey};
+      /* width: 2px;
+      background: ${({ theme }) => theme.grey};
       height: 100%;
       left: 0;
       position: absolute;
       transform: skew(-20deg);
       top: 0;
-      bottom: 0;
+      bottom: 0; */
     }
     &:after {
       height: 2px;
@@ -45,7 +45,7 @@ const NavStyles = styled.ul`
       transition: width 0.4s;
       transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
       left: 50%;
-      margin-top: 2rem;
+      margin-top: 2.3rem;
     }
     &:hover,
     &:focus {
@@ -56,15 +56,23 @@ const NavStyles = styled.ul`
     }
   }
 
-  @media (max-width: 1300px) {
+  @media (max-width: 1200px) {
     border-top: 1px solid ${props => props.theme.grey};
     width: 100%;
     justify-content: center;
-    font-size: 1.5rem;
+  }
+  @media (min-width: 1201px) {
+    align-items: center;
+   a,button {
+    padding: 1rem;
+  }
   }
 `;
 const OptionStyles = styled.div`
-  padding: 1rem 0;
+button {
+  padding: .5rem 1rem;
+}
+
   .categories {
     position: absolute;
     z-index: 5;
@@ -74,20 +82,27 @@ const OptionStyles = styled.div`
     color: ${({ theme }) => theme.primary};
     opacity: 0;
 
-    a {
+    li {
       list-style-type: none;
+      a {
       transition: ${({ theme }) => theme.mainTransition};
       background: ${({ theme }) => theme.primary};
       text-transform: lowercase;
       padding-top: 0;
+      width: 100%;
+
       &:hover {
         background: ${({ theme }) => theme.green};
         text-transform: uppercase;
-        padding-left: 1.5rem;
+        padding-left: 1rem;
         box-shadow: ${({ theme }) => theme.bs};
-        border-radius: ${({ theme }) => theme.radius};
-        margin: 0.5rem;
+        /* border-radius: ${({ theme }) => theme.radius}; */
+        margin: 1rem;
       }
+             &:active {
+                outline: none;
+                    }
+          }
     }
   }
 
@@ -95,5 +110,32 @@ const OptionStyles = styled.div`
     display: block;
     opacity: 1;
   }
+  @media (max-width: 768px) {
+    button {
+      padding: 1.4rem 0;
+    }
+  .drops{
+    a {
+     &:hover {
+        padding: 0 .5rem;
+
+    }
+  }
+  }
+}
+  @media (max-width: 1200px) {
+    button {
+      padding-top: 1.5rem;
+    }
+  .drops{
+    a {
+     &:hover {
+        padding: 0 1rem;
+
+    }
+  }
+  }
+}
 `;
 export { NavStyles, OptionStyles };
+

@@ -3,15 +3,15 @@ import FormStyles from './styles/FormStyles';
 import Title from './Title';
 
 const Contact = () => (
-  <FormStyles>
+  <FormStyles action="https://formspree.io/mgeljqko" method="POST">
     <fieldset>
-      <Title title="Prendre Contact avec Nous" center />
+      <Title title="Prendre contact avec la team 850grammes" center />
       <label htmlFor="name">
         Nom
         <input
           type="name"
           name="name"
-          placeholder="comment est-ce qu'on doit t'appeler"
+          placeholder="comment est-ce qu'on doit t'appeler ?"
           // value={inputs.name}
           // onChange={handleChange}
           autoComplete="name"
@@ -33,7 +33,7 @@ const Contact = () => (
         <input
           type="subject"
           name="subject"
-          placeholder="important😎😎!!!"
+          placeholder="important!!!"
           // value={inputs.name}
           // onChange={handleChange}
           autoComplete="subject"
@@ -44,7 +44,7 @@ const Contact = () => (
         <textarea
           rows="10"
           name="message"
-          placeholder="écris-nous quelques lignes"
+          placeholder="Sois Synth&eacute;tique Please"
           // value={inputs.name}
           // onChange={handleChange}
           autoComplete="name"

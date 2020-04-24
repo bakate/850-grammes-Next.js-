@@ -4,7 +4,7 @@ const FooterStyles = styled.footer`
   background: ${({ theme }) => theme.grey};
   color: ${({ theme }) => theme.black};
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 2rem;

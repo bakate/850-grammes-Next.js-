@@ -45,14 +45,17 @@ export default function Recipe({ singleRecipe }) {
             <img src="/farm.svg" alt="logo" className="logo" />
             <Title title="ingredients:" withRow center />
           </div>
-          <ReactMarkdown source={singleRecipe?.ingredients} />
+          <ReactMarkdown
+            source={singleRecipe?.ingredients}
+            className="markdown"
+          />
         </div>
         <div>
           <div className="withLogo">
             <img src="/cooking.svg" alt="logo" className="logo" />
             <Title title="preparation:" withRow center />
           </div>
-          <ReactMarkdown source={singleRecipe?.cooking} />
+          <ReactMarkdown source={singleRecipe?.cooking} className="markdown" />
         </div>
       </div>
       <div className="gallery">
@@ -64,7 +67,7 @@ export default function Recipe({ singleRecipe }) {
         </Link>
       </div>
       <div className="published">
-        <Title title="publiee le:" center />
+        <Title title="publi&eacute;e le:" center />
         <span>
           {goodTime &&
             new Intl.DateTimeFormat('fr', {

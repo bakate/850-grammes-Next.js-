@@ -2,7 +2,7 @@ import React from 'react';
 import Contact from '../components/Contact';
 import Hero from '../components/Hero';
 
-const contact = () => (
+const contactPage = () => (
   <>
     <Hero img="/contact.jpg">
       <h2 style={{ textTransform: 'uppercase' }}>Une information ?</h2>
@@ -11,4 +11,4 @@ const contact = () => (
   </>
 );
 
-export default contact;
+export default contactPage;

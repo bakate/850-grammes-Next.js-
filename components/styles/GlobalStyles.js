@@ -15,7 +15,6 @@ export const theme = {
   white: '#fff',
   mainTransition: 'all 0.3s ease-in-out',
   mainSpacing: '0.3rem',
-  smallWidth: '300vw',
 };
 
 export const GlobalStyles = createGlobalStyle`

@@ -1,9 +1,10 @@
+/* eslint-disable react/display-name */
 import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import { useInfos } from '../pages/api/LocalState';
+import { useInfos } from './context/LocalState';
 import { DropDown, DropDownItem } from './styles/DropDownStyles';
 
 const SearchStyles = styled.div`
@@ -24,14 +25,17 @@ const SearchStyles = styled.div`
 const AutoComplete = () => {
   const { search, getItems } = useInfos();
 
-  const router = useRouter();
+  // const router = useRouter();
   const handleChange = item => {
-    router.push(`/recettes/${item.id}`);
+    Router.push(`/recettes/${item.id}`);
   };
 
-  const findRecipes = query => getItems(query);
+  const findRecipes = query => {
+    if (!query) return;
+    getItems(query);
+  };
 
-  const findItemsButSlowly = debounce(findRecipes, 300);
+  const findItemsButSlowly = debounce(findRecipes, 250);
   resetIdCounter();
   return (
     <SearchStyles>
@@ -62,7 +66,7 @@ const AutoComplete = () => {
 
             {isOpen && (
               <DropDown>
-                {search.map((item, index) => {
+                {search?.map((item, index) => {
                   const { image } = item;
                   const [firstImage] = image;
                   return (
@@ -76,12 +80,23 @@ const AutoComplete = () => {
                     </DropDownItem>
                   );
                 })}
-                {!search.length && (
+
+                {!search?.length > 0 && (
                   <DropDownItem>
                     Oulalalah!! Nous n'avons pas encore de recette pour
                     {inputValue}
                   </DropDownItem>
                 )}
+                {/* {!search?.length > 0 &&
+                  setTimeout(
+                    () => (
+                      <DropDownItem>
+                        Oulalalah!! Nous n'avons pas encore de recette pour
+                        {inputValue}
+                      </DropDownItem>
+                    ),
+                    800
+                  )} */}
               </DropDown>
             )}
           </div>

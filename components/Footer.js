@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { useInfos } from '../pages/api/LocalState';
+import { useInfos } from './context/LocalState';
 import FooterStyles from './styles/FooterStyles';
 
 const Footer = () => {
@@ -8,16 +8,18 @@ const Footer = () => {
 
   const socials = social.map(item => (
     <Link href={item.url} key={item.id} prefetch={false}>
-      <a target="_blank">{item.icon}</a>
+      <a target="_blank" rel="noopener noreferrer">
+        {item.icon}
+      </a>
     </Link>
   ));
   return (
     <FooterStyles>
       <div className="content">
-        <p>
+        <h3>
           Copyright &copy; 850grammes {new Date().getFullYear()} all rights
           reserved papi
-        </p>
+        </h3>
       </div>
       <div className="logos">{socials}</div>
     </FooterStyles>

@@ -1,12 +1,12 @@
 import cogoToast from 'cogo-toast';
 import Router from 'next/router';
-import { parseCookies, setCookie } from 'nookies';
+import { parseCookies } from 'nookies';
 import styled from 'styled-components';
+import { useInfos } from '../components/context/LocalState';
 import FormStyles from '../components/styles/FormStyles';
 import Title from '../components/Title';
 import { signupUser } from '../lib/api';
 import useForm from '../lib/useForm';
-import { useInfos } from './api/LocalState';
 // import { useState, useEffect } from 'react';
 
 const Column = styled.div`
@@ -16,7 +16,7 @@ const Column = styled.div`
 `;
 
 const SignUpPage = () => {
-  const { setUser } = useInfos();
+  const { userLogin } = useInfos();
   //   const [authenticated, setAuthenticated] = useState(initialState)
   // useEffect(() => {
   //   effect
@@ -40,31 +40,31 @@ const SignUpPage = () => {
       inputs.email,
       inputs.password
     );
-    setCookie(null, 'fromClientSide', res.jwt, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: '/',
-    });
-    setUser(res.jwt);
-    if (res.jwt) {
-      Router.push('/');
-      cogoToast.success(
-        <div>
-          <b>Trop Bien {res.user.username}!</b>
-          <div>Enjoy!!</div>
-        </div>
-      );
-    }
-
+    await userLogin(res);
+    // setCookie(null, 'fromClientSide', res.jwt, {
+    //   maxAge: 30 * 24 * 60 * 60,
+    //   path: '/',
+    // });
+    // setUser(res.jwt);
+    // if (res.jwt) {
+    //   Router.push('/');
+    //   cogoToast.success(
+    //     <div>
+    //       <b>Trop Bien {res.user.username}!</b>
+    //       <div>Enjoy!!</div>
+    //     </div>
+    //   );
+    // }
     clearForm();
   };
   return (
     <Column>
       <FormStyles method="post" onSubmit={handleSubmit}>
         <fieldset>
-          <Title title="Se creer un Compte" center />
+          <Title title="Se cr&eacute;er un Compte" center />
 
           {isEmpty && (
-            <p className="form-empty">Pense a remplir tous les champs</p>
+            <p className="form-empty">Pense &agrave; remplir tous les champs</p>
           )}
           <label htmlFor="username">
             Username
@@ -123,9 +123,9 @@ const SignUpPage = () => {
 // }
 
 SignUpPage.getInitialProps = async ctx => {
-  const isAuthenticated = parseCookies(ctx).fromClientSide;
+  const isAuthenticated = !!parseCookies(ctx).fromClientSide;
 
-  if (!!isAuthenticated && ['/signup', '/signin'].indexOf(ctx.asPath) > -1) {
+  if (isAuthenticated && ['/signup', '/signin'].indexOf(ctx.asPath) > -1) {
     if (!ctx.req) {
       // client-side
       Router.replace('/');

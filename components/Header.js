@@ -18,19 +18,17 @@ Router.onRouteChangeError = () => {
 
 const Header = () => (
   <HeaderStyles>
-    <div className="bar">
-      <LogoStyles>
-        <Link href="/">
-          <a>
-            <span className="span1">850</span>
-            <span className="span2">grammes</span>
-            <span className="span3">la vie dans la cuisine!</span>
-          </a>
-        </Link>
-      </LogoStyles>
-      <AutoComplete />
-      <Nav />
-    </div>
+    <LogoStyles>
+      <Link href="/">
+        <div className="logo">
+          <span className="span1">850</span>
+          <span className="span2">grammes</span>
+          <span className="span3">la vie dans la cuisine!</span>
+        </div>
+      </Link>
+    </LogoStyles>
+    <AutoComplete />
+    <Nav />
   </HeaderStyles>
 );
 

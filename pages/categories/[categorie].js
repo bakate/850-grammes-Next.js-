@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import styled from 'styled-components';
 import Card from '../../components/Card';
@@ -9,22 +10,26 @@ export const Center = styled.div`
 `;
 export const ItemsList = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 60px;
-  margin: 3rem auto;
-  max-width: ${({ theme }) => theme.maxWidth};
+  place-items: center;
+  /* margin: 3rem auto; */
+  /* max-width: var(--maxWidth); */
+  @media (max-width: 767px) {
+    justify-content: center;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 `;
 
 const Category = ({ singleCategory }) => (
   <Center>
-    <Title bgTitle={singleCategory.name} center withRow />
+    <Title bgTitle={singleCategory?.name} center withRow />
     <ItemsList>
       {!singleCategory.recettes.length && (
         <Title bgTitle="Sorry, aucune recette pour le moment" center withRow />
       )}
-      {singleCategory.recettes.map(item => (
-        <Card key={item.id} {...item} />
-      ))}
+      {singleCategory?.recettes.map(item => <Card key={item.id} {...item} />)}
     </ItemsList>
   </Center>
 );

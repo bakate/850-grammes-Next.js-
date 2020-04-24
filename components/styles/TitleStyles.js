@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const TitleStyles = styled.div`
+  padding: 0 0.5rem;
   /* display: grid;
   grid-template-rows: 1fr; */
   /* margin: 0.1rem; */

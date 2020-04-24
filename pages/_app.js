@@ -1,8 +1,8 @@
 import App from 'next/app';
 import React from 'react';
-import Page from '../components/Page';
 // import withData from '../lib/withData';
-import { InfoStateProvider } from './api/LocalState';
+import { InfoStateProvider } from '../components/context/LocalState';
+import Page from '../components/Page';
 
 export default class MyApp extends App {
   render() {

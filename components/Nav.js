@@ -1,11 +1,9 @@
 /* eslint-disable react/display-name */
-import cogoToast from 'cogo-toast';
 import Link from 'next/link';
-import Router from 'next/router';
-import { destroyCookie, parseCookies } from 'nookies';
+import { parseCookies } from 'nookies';
 import React from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { useInfos } from '../pages/api/LocalState';
+import { useInfos } from './context/LocalState';
 import { NavStyles, OptionStyles } from './styles/NavStyles';
 
 const token = parseCookies('fromClientSide');
@@ -13,6 +11,7 @@ const token = parseCookies('fromClientSide');
 
 export const CategoriesDropdown = () => {
   const { categories } = useInfos();
+
   return (
     <OptionStyles>
       <button type="button">
@@ -21,11 +20,16 @@ export const CategoriesDropdown = () => {
       </button>
       <div className="categories">
         {categories?.map(item => (
-          <li className="drops" key={item.id}>
-            <Link href="/categories/[categorie]" as={`/categories/${item.id}`}>
-              <a>{item.name}</a>
-            </Link>
-          </li>
+          <div className="drops" key={item.id}>
+            <li>
+              <Link
+                href="/categories/[categorie]"
+                as={`/categories/${item.id}`}
+              >
+                <a>{item.name}</a>
+              </Link>
+            </li>
+          </div>
         ))}
       </div>
     </OptionStyles>
@@ -33,19 +37,22 @@ export const CategoriesDropdown = () => {
 };
 
 const Nav = () => {
-  const { user, setUser } = useInfos();
-  if (token) {
-    setUser(token);
-  }
+  // const [withToken, setDestroyToken] = useState(token);
+  const { user, userLogout } = useInfos();
 
-  const userLogout = () => {
-    setUser(destroyCookie(null, 'fromClientSide'));
-    Router.push('/');
-    cogoToast.success('Au Revoir et a tres vite');
-  };
+  // const userLogout = () => {
+  //   setDestroyToken(destroyCookie(null, 'fromClientSide'));
+  //   Router.push('/');
+  //   cogoToast.success('Au Revoir et a tres vite');
+  // };
 
   return (
     <NavStyles>
+      {Object.entries(user).length > 0 && (
+        <button type="button" style={{ color: 'orange' }}>
+          {user?.user?.username}
+        </button>
+      )}
       <Link href="/">
         <a>Accueil</a>
       </Link>
@@ -60,7 +67,7 @@ const Nav = () => {
       <Link href="/contact">
         <a>Contact</a>
       </Link>
-      {Object.entries(user).length > 0 ? (
+      {Object.entries(user).length > 0 || Object.entries(token).length > 0 ? (
         <button type="button" onClick={userLogout}>
           Se Deconnecter
         </button>

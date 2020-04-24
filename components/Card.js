@@ -18,7 +18,7 @@ const Card = ({ image, title, id, duration, category }) => {
       </div>
       <div>
         <span>{duration} minutes</span>
-        <p>{category?.difficulty}</p>
+        <p>Niveau de Difficulte: {category?.difficulty}</p>
       </div>
     </ItemStyles>
   );

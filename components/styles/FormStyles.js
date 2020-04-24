@@ -1,16 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-const loading = keyframes`
-  from {
-    background-position: 0 0;
-    /* rotate: 0; */
-  }
-
-  to {
-    background-position: 100% 100%;
-    /* rotate: 360deg; */
-  }
-`;
+import styled from 'styled-components';
 
 const FormStyles = styled.form`
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
@@ -25,8 +13,7 @@ const FormStyles = styled.form`
     margin-bottom: 1rem;
   }
   input,
-  textarea,
-  select {
+  textarea {
     width: 100%;
     padding: 0.7rem;
     font-size: 1.5rem;
@@ -44,15 +31,13 @@ const FormStyles = styled.form`
     border: 0;
     font-size: 2rem;
     font-weight: 700;
+    cursor: pointer;
     padding: 0.5rem 1.2rem;
   }
   fieldset {
     border: 0;
     padding: 0;
 
-    &[disabled] {
-      opacity: 0.5;
-    }
     &::before {
       height: 10px;
       content: '';
@@ -62,10 +47,6 @@ const FormStyles = styled.form`
         #fee140 0%,
         #ff9d00 100% /* #fa709a 100% */
       );
-    }
-    &[aria-busy='true']::before {
-      background-size: 50% auto;
-      animation: ${loading} 0.5s linear infinite;
     }
   }
   .form-empty {

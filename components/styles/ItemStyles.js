@@ -23,21 +23,7 @@ const Item = styled.div`
     padding: 0 3rem;
     font-size: 1.5rem;
   }
-  .buttonList {
-    display: grid;
-    width: 100%;
-    border-top: 1px solid ${props => props.theme.grey};
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-gap: 1px;
-    background: ${props => props.theme.grey};
-    & > * {
-      background: white;
-      border: 0;
-      font-family: 'JetBrains Mono';
-      font-size: 1rem;
-      padding: 1rem;
-    }
-  }
+
   &:hover img {
     opacity: 0.6;
   }
