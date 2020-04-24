@@ -24,7 +24,6 @@ const SearchStyles = styled.div`
 
 const AutoComplete = () => {
   const { search, getItems } = useInfos();
-
   // const router = useRouter();
   const handleChange = item => {
     Router.push(`/recettes/${item.id}`);
@@ -81,22 +80,11 @@ const AutoComplete = () => {
                   );
                 })}
 
-                {!search?.length > 0 && (
+                {inputValue.length > 1 && !search.length > 0 && (
                   <DropDownItem>
-                    Oulalalah!! Nous n'avons pas encore de recette pour
-                    {inputValue}
+                    Ohh! Pas encore de recette pour: <b>{inputValue}</b>
                   </DropDownItem>
                 )}
-                {/* {!search?.length > 0 &&
-                  setTimeout(
-                    () => (
-                      <DropDownItem>
-                        Oulalalah!! Nous n'avons pas encore de recette pour
-                        {inputValue}
-                      </DropDownItem>
-                    ),
-                    800
-                  )} */}
               </DropDown>
             )}
           </div>
