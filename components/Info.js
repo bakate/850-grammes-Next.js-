@@ -34,7 +34,6 @@ const InfoStyles = styled.section`
       'content2';
     justify-content: center;
     .bloc {
-      padding: 0.5rem;
       width: 100%;
       img {
         width: 100%;

@@ -8,7 +8,7 @@ export default function Index({ allRecipes }) {
   return (
     <Center>
       <Title
-        bgTitle="decouvrez rapidement nos 6 dernieres recettes..."
+        title="decouvre rapidement nos 6 derni&eacute;res recettes..."
         center
       />
       <ItemsList>

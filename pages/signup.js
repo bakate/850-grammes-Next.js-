@@ -7,7 +7,6 @@ import FormStyles from '../components/styles/FormStyles';
 import Title from '../components/Title';
 import { signupUser } from '../lib/api';
 import useForm from '../lib/useForm';
-// import { useState, useEffect } from 'react';
 
 const Column = styled.div`
   display: grid;
@@ -17,21 +16,36 @@ const Column = styled.div`
 
 const SignUpPage = () => {
   const { userLogin } = useInfos();
-  //   const [authenticated, setAuthenticated] = useState(initialState)
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
 
-  const { inputs, handleChange, clearForm } = useForm({
+  const { inputs, handleChange } = useForm({
     username: 'machin',
     email: 'machin@850g.com',
     password: 'azerty123',
   });
 
+  // const strongRegex = new RegExp(
+  //   '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+  // );
+  // const mediumRegex = new RegExp(
+  //   '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+  // );
+
   const isEmpty = !inputs.username || !inputs.email || !inputs.password;
+  // const isStrong = strongRegex.test.inputs?.password;
+  // const isGoodEnough = mediumRegex.test.inputs?.password;
+  // const colorProvider = {
+  //   strong: '#96ce66',
+  //   medium: '#ff9d00',
+  //   weak: '',
+  // };
+
+  // const [background, setBackground] = useState(colorProvider);
+  // if (isStrong) {
+  //   return setBackground({ background: background.strong });
+  // }
+  // if (isGoodEnough) {
+  //   return setBackground({ background: background.medium });
+  // }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -41,21 +55,6 @@ const SignUpPage = () => {
       inputs.password
     );
     await userLogin(res);
-    // setCookie(null, 'fromClientSide', res.jwt, {
-    //   maxAge: 30 * 24 * 60 * 60,
-    //   path: '/',
-    // });
-    // setUser(res.jwt);
-    // if (res.jwt) {
-    //   Router.push('/');
-    //   cogoToast.success(
-    //     <div>
-    //       <b>Trop Bien {res.user.username}!</b>
-    //       <div>Enjoy!!</div>
-    //     </div>
-    //   );
-    // }
-    clearForm();
   };
   return (
     <Column>
@@ -73,7 +72,6 @@ const SignUpPage = () => {
               name="username"
               value={inputs.username}
               onChange={handleChange}
-              autoComplete="name"
             />
           </label>
           <label htmlFor="email">
@@ -83,7 +81,6 @@ const SignUpPage = () => {
               name="email"
               value={inputs.email}
               onChange={handleChange}
-              autoComplete="email"
             />
           </label>
           <label htmlFor="password">
@@ -93,7 +90,6 @@ const SignUpPage = () => {
               name="password"
               value={inputs.password}
               onChange={handleChange}
-              autoComplete="new-password"
             />
           </label>
           {!isEmpty && <button type="submit">S'inscrire!</button>}
@@ -129,7 +125,7 @@ SignUpPage.getInitialProps = async ctx => {
     if (!ctx.req) {
       // client-side
       Router.replace('/');
-      cogoToast.info('Tu es deja logu&eacute; papi');
+      cogoToast.info('Tu es d&eacute;j&agrave; logu&eacute; papi');
     }
     if (ctx.req) {
       ctx.res.writeHead(302, {
