@@ -5,19 +5,19 @@ import socialData from './socialData';
 const LocalStateContext = createContext();
 const LocalStateProvider = LocalStateContext.Provider;
 
-function CartStateProvider({ children }) {
+function InfoStateProvider({ children }) {
   // function getUserFromLocalStorage() {
   //   const someone = localStorage.getItem('user');
-  //   const nobody = { username: null, token: null };
+  //   const nobody = { username: null, fromClientSide: null };
   //   return someone ? JSON.parse(someone) : nobody;
   // }
 
   // const [userFromLS, setUserFromLS] = useState();
 
   const [social, setSocial] = useState(socialData);
-  // const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [categories, setCategories] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -55,10 +55,36 @@ function CartStateProvider({ children }) {
     setSearch(res);
   };
 
+  // const userLogin = info => (
+  //   setCookie(null, 'fromClientSide', info.jwt, {
+  //     maxAge: 30 * 24 * 60 * 60,
+  //     path: '/',
+  //   }),
+  //   setUser(info),
+  //   info.jwt
+  //     ? cogoToast.success(
+  //         <div>
+  //           <b>Trop bien {info.user.username}!</b>
+  //           <div>Trop bien! Ton inscription est validee</div>
+  //         </div>
+  //       )
+  //     : cogoToast.error("Quelque chose s'est mal passee"),
+  //   Router.push('/')
+  // );
+
+  // const userLogout = () => {
+  //   destroyCookie(null, 'fromClientSide');
+  //   Router.push('/');
+  //   setUser({});
+  //   cogoToast.success('Au Revoir et a tres vite');
+  // };
+
   return (
     <LocalStateProvider
       value={{
+        setUser,
         // userLogin,
+        user,
         // userLogout,
         categories,
         social,
@@ -76,7 +102,7 @@ function useInfos() {
   return all;
 }
 
-export { CartStateProvider, LocalStateContext, useInfos };
+export { InfoStateProvider, useInfos };
 
 // cartOpen,
 // toggleCart,

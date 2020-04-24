@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
-import { useInfos } from '../pages/context/LocalState';
+import { useInfos } from '../pages/api/LocalState';
 import { DropDown, DropDownItem } from './styles/DropDownStyles';
 
 const SearchStyles = styled.div`

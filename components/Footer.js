@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { useInfos } from '../pages/context/LocalState';
+import { useInfos } from '../pages/api/LocalState';
 import FooterStyles from './styles/FooterStyles';
 
 const Footer = () => {

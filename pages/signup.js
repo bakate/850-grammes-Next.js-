@@ -1,6 +1,13 @@
+import cogoToast from 'cogo-toast';
+import Router from 'next/router';
+import { parseCookies, setCookie } from 'nookies';
 import styled from 'styled-components';
-import Signup from '../components/Signup';
-import Signin from '../components/Signin';
+import FormStyles from '../components/styles/FormStyles';
+import Title from '../components/Title';
+import { signupUser } from '../lib/api';
+import useForm from '../lib/useForm';
+import { useInfos } from './api/LocalState';
+// import { useState, useEffect } from 'react';
 
 const Column = styled.div`
   display: grid;
@@ -8,11 +15,135 @@ const Column = styled.div`
   gap: 20px;
 `;
 
-const signup = () => (
-  <Column>
-    <Signup />
-    <Signin />
-  </Column>
-);
+const SignUpPage = () => {
+  const { setUser } = useInfos();
+  //   const [authenticated, setAuthenticated] = useState(initialState)
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [input])
 
-export default signup;
+  const { inputs, handleChange, clearForm } = useForm({
+    username: 'machin',
+    email: 'machin@850g.com',
+    password: 'azerty123',
+  });
+
+  const isEmpty = !inputs.username || !inputs.email || !inputs.password;
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const res = await signupUser(
+      inputs.username,
+      inputs.email,
+      inputs.password
+    );
+    setCookie(null, 'fromClientSide', res.jwt, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    });
+    setUser(res.jwt);
+    if (res.jwt) {
+      Router.push('/');
+      cogoToast.success(
+        <div>
+          <b>Trop Bien {res.user.username}!</b>
+          <div>Enjoy!!</div>
+        </div>
+      );
+    }
+
+    clearForm();
+  };
+  return (
+    <Column>
+      <FormStyles method="post" onSubmit={handleSubmit}>
+        <fieldset>
+          <Title title="Se creer un Compte" center />
+
+          {isEmpty && (
+            <p className="form-empty">Pense a remplir tous les champs</p>
+          )}
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              name="username"
+              value={inputs.username}
+              onChange={handleChange}
+              autoComplete="name"
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              name="email"
+              value={inputs.email}
+              onChange={handleChange}
+              autoComplete="email"
+            />
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              type="password"
+              name="password"
+              value={inputs.password}
+              onChange={handleChange}
+              autoComplete="new-password"
+            />
+          </label>
+          {!isEmpty && <button type="submit">S'inscrire!</button>}
+        </fieldset>
+      </FormStyles>
+    </Column>
+  );
+};
+
+// export async function getServerSideProps(ctx) {
+//   const isAuthenticated = parseCookies(ctx).fromClientSide;
+//   if (!!isAuthenticated && ['/signup', '/signin'].indexOf(ctx.asPath) > -1) {
+//     if (!ctx.req) {
+//       // client-side
+//       Router.replace('/');
+//       cogoToast.info('Tu es deja loguee papi');
+//     }
+//     if (ctx.req) {
+//       ctx.res.writeHead(301, {
+//         Location: '/',
+//       });
+//       ctx.res.end();
+//       isAuthenticated();
+//     }
+//   }
+//   return { props: { isAuthenticated } };
+// }
+
+SignUpPage.getInitialProps = async ctx => {
+  const isAuthenticated = parseCookies(ctx).fromClientSide;
+
+  if (!!isAuthenticated && ['/signup', '/signin'].indexOf(ctx.asPath) > -1) {
+    if (!ctx.req) {
+      // client-side
+      Router.replace('/');
+      cogoToast.info('Tu es deja loguee papi');
+    }
+    if (ctx.req) {
+      ctx.res.writeHead(302, {
+        Location: '/',
+      });
+      ctx.res.end();
+    }
+  }
+  return { isAuthenticated };
+};
+// SignUpPage.getInitialProps = async ctx => {
+//   const another = await getSecretData(ctx.req);
+
+//   return { superValue: another };
+// };
+
+export default SignUpPage;

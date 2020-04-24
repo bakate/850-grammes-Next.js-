@@ -10,7 +10,7 @@ const Hero = ({ img, title, max, children, blackColor }) => (
 );
 
 Hero.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   img: PropTypes.string,
   max: PropTypes.bool,
   title: PropTypes.string,

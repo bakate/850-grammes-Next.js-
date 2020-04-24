@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
+    "cogo-toast": "^4.2.3",
     "dotenv": "^8.2.0",
     "downshift": "^5.0.6",
     "isomorphic-unfetch": "^3.0.0",
     "lodash.debounce": "^4.0.8",
     "next": "9.3.4",
+    "nookies": "^2.2.2",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
