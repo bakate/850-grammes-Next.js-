@@ -35,11 +35,6 @@ const LogoStyles = styled.section`
       display: block;
     }
      }
-    &:hover {
-      text-transform: uppercase;
-      font-size: 1.9rem;
-      font-weight: bold;
-    }
 
   @media (max-width: 1200px) {
     margin: 1rem 0;
