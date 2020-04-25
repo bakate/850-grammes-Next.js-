@@ -56,7 +56,7 @@ const RecipeStyles = styled.div`
     span {
       font-size: 2rem;
       font-style: italic;
-      padding: 1rem;
+      padding-bottom: 1.5rem;
       text-transform: capitalize;
       line-height: 2rem;
     }
@@ -113,7 +113,7 @@ const RecipeStyles = styled.div`
       font-size: 0.8rem;
       span {
         font-size: 1rem;
-        /* padding: 1rem; */
+        padding-bottom: 2.5rem;
       }
 
       /* padding: 0; */

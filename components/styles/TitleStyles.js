@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
 const TitleStyles = styled.div`
-  padding: 0 0.5rem 1.5rem 0;
-  /* display: grid;
-  grid-template-rows: 1fr; */
+  padding: 0 1.5rem 1rem 1.5rem;
+  display: grid;
+  /* align-items: center; */
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  margin: 0 1rem;
   /* margin: 0.1rem; */
   div {
     text-align: ${props => (props.centerTitle ? 'center' : 'left')};
     h1,
     h2 {
       text-transform: capitalize;
+      font-size: 2rem;
     }
     hr {
       height: ${props => (props.hr ? '0.4rem' : '0')};
