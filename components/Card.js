@@ -33,9 +33,10 @@ const Card = ({ image, title, id, duration, category }) => {
       <div>
         {hours >= 1 && (
           <>
-            <b>{hours}</b> <span>heure{hours > 1 ? 's' : ''} et</span>
+            <b>{hours}</b> <span>heure{hours > 1 ? 's' : ''}</span>
           </>
-        )}{' '}
+        )}
+        {hours >= 1 && minutes > 0 && <span> et </span>}
         {minutes > 0 && (
           <>
             <b>{minutes}</b>
