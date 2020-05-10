@@ -15,13 +15,13 @@ function ScrollButton() {
   return (
     <IconButton
       opacity={height > 200 ? '1' : '0'}
-      variant="outline"
-      variantColor="red"
+      variant="solid"
+      variantColor="orange"
       ariaLabel="Scroll Up"
-      fontSize="20px"
+      size="sm"
       position="fixed"
-      right="1.5rem"
-      bottom="1.5rem"
+      right=".8rem"
+      bottom=".4rem"
       zIndex="tooltip"
       icon={FaAngleDoubleUp}
       onClick={scrollBackToTop}

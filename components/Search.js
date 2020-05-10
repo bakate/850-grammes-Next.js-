@@ -27,7 +27,7 @@ const AutoComplete = () => {
     <Box
       justifySelf={{ base: 'stretch', md: 'center' }}
       position="relative"
-      pr={{ base: '1rem' }}
+      p={{ base: '1.8rem' }}
     >
       <Downshift
         onChange={handleChange}

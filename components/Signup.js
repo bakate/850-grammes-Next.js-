@@ -18,7 +18,11 @@ const Signup = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await signupUser(inputs);
+    const res = await signupUser(
+      inputs.username,
+      inputs.email,
+      inputs.password
+    );
     await userLogin(res);
   };
   return (
@@ -58,6 +62,7 @@ const Signup = () => {
           <Button
             boxShadow="lg"
             type="submit"
+            mt={2}
             mx="auto"
             variant="solid"
             variantColor="orange"

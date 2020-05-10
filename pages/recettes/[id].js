@@ -2,6 +2,7 @@ import { Box, Flex, Grid, Image, PseudoBox, SimpleGrid, Text } from '@chakra-ui/
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import Title from '../../components/Title';
@@ -23,12 +24,14 @@ export default function Recipe({ singleRecipe }) {
     <PseudoBox
       as={Image}
       src={item.url}
-      p={{ base: '0 1rem', md: '1rem' }}
+      px={{ base: '4' }}
+      mx="auto"
+      // p="1rem"
       objectFit="cover"
-      transition="width .5s linear"
+      transition="all .5s linear"
       _hover={{ transform: 'scale(1.2)' }}
       h="250px"
-      w="350px"
+      w="300px"
       key={i}
       alt="gallery"
     />
@@ -42,10 +45,10 @@ export default function Recipe({ singleRecipe }) {
       border="1px solid white"
       borderRadius="md"
       boxShadow="lg"
-      gap="1.2rem"
+      gap="1.5rem"
       justifyContent={{ base: 'center' }}
       alignItems={{ base: 'center' }}
-      margin={{ base: '0 auto', md: '2rem auto' }}
+      // margin={{ base: '0 auto', md: '2rem auto' }}
     >
       <Head>
         <title>{singleRecipe?.title}</title>
@@ -56,9 +59,11 @@ export default function Recipe({ singleRecipe }) {
           src={first?.url}
           alt={singleRecipe?.title}
           w="full"
-          h="400px"
+          h={{ base: '300px', md: '400px' }}
           objectFit="cover"
-          mt={4}
+          px={{ base: '4' }}
+          pt={{ base: '4' }}
+          // mt={{ md: '2' }}
         />
       </div>
 
@@ -66,8 +71,8 @@ export default function Recipe({ singleRecipe }) {
         templateColumns="repeat(auto-fit, minmax(350px, 1fr))"
         justifyContent="space-between"
         alignItems="stretch"
-        p={8}
-        m={4}
+        p={{ base: '2', md: '8' }}
+        m={{ base: '2', md: '4' }}
         columnGap={2}
       >
         <Box pb={4}>
@@ -82,10 +87,10 @@ export default function Recipe({ singleRecipe }) {
               w="4rem"
               mr={{ base: '.7rem', md: '1.5rem' }}
             />
-            <Title title="ingredients:" withRow center />
+            <Title title="ingr&eacute;dients:" withRow center />
           </Flex>
 
-          <Box p={{ base: '0 1rem' }}>
+          <Box p={{ base: '0 2rem' }} mx={{ base: 'auto' }}>
             <ReactMarkdown source={singleRecipe?.ingredients} />
           </Box>
         </Box>
@@ -104,7 +109,7 @@ export default function Recipe({ singleRecipe }) {
             <Title title="pr&eacute;paration:" withRow center />
           </Flex>
 
-          <Box p={{ base: '0 1rem' }}>
+          <Box p={{ base: '0 2rem' }} mx={{ base: 'auto' }}>
             <ReactMarkdown source={singleRecipe?.cooking} />
           </Box>
         </Box>
@@ -113,7 +118,14 @@ export default function Recipe({ singleRecipe }) {
 
       <Link href={singleRecipe?.url} prefetch={false}>
         <a target="_blank" rel="noopener noreferrer">
-          <SimpleGrid minChildWidth="220px" spacing="15px" p={8} m="0 auto">
+          <SimpleGrid
+            minChildWidth="250px"
+            spacing="1rem"
+            // p="1rem"
+            px={{ base: '4', md: '6' }}
+            mx={{ base: 'auto' }}
+            // m="0 auto"
+          >
             {images}
           </SimpleGrid>
         </a>
@@ -140,6 +152,10 @@ export default function Recipe({ singleRecipe }) {
     </Grid>
   );
 }
+
+Recipe.propTypes = {
+  singleRecipe: PropTypes.array,
+};
 
 export async function getStaticProps({ params }) {
   const singleRecipe = await getSingleRecipe(params.id);

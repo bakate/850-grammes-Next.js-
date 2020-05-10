@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { Box } from '@chakra-ui/core';
+import { Box, Button } from '@chakra-ui/core';
 import { parseCookies } from 'nookies';
 import React from 'react';
 import MenuItems from './chakra/MenuItems';
@@ -17,14 +17,19 @@ const Nav = () => {
     <Box
       display={{ base: show ? 'block' : 'none', md: 'flex' }}
       alignItems="center"
-      justifyContent="space-around"
+      justifyContent="space-evenly"
       textAlign={{ base: 'center' }}
       fontSize="1em"
     >
       {Object.entries(user).length > 0 && (
-        <button type="button" style={{ color: 'orange' }}>
+        <Button
+          variant="ghost"
+          variantColor="orange"
+          textTransform="uppercase"
+          opacity=".5"
+        >
           {user?.user?.username}
-        </button>
+        </Button>
       )}
       <NavLinks href="/" title="accueil" />
 
@@ -35,9 +40,16 @@ const Nav = () => {
       <NavLinks href="/contact" title="contact" />
 
       {Object.entries(user).length > 0 || Object.entries(token).length > 0 ? (
-        <button type="button" onClick={userLogout}>
-          Se Deconnecter
-        </button>
+        <Button
+          type="button"
+          onClick={userLogout}
+          variant="ghost"
+          variantColor="orange"
+          textTransform="uppercase"
+          cursor="pointer"
+        >
+          Deconnexion
+        </Button>
       ) : (
         <NavLinks href="/signup" title="S'inscrire" />
       )}

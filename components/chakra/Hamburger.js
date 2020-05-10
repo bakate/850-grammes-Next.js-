@@ -11,7 +11,8 @@ const Hamburger = () => {
       justifySelf="end"
       onClick={handleToggle}
       // mt={{ base: 4, md: 0 }}
-      pr={{ base: 4, md: 4 }}
+      // pr={{ base: 4, md: 4 }}
+      px={{ base: '1.8rem' }}
       cursor="pointer"
     >
       <svg
