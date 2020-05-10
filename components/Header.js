@@ -24,8 +24,6 @@ const Header = () => {
   const color = { light: 'black', dark: 'white' };
 
   return (
-    // <HeaderStyles>
-    //   <LogoStyles>
     <Grid
       color={color[colorMode]}
       bg={bgColor[colorMode]}
