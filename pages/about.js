@@ -1,9 +1,9 @@
-import Info from '../components/Info';
 import Hero from '../components/Hero';
+import Info from '../components/Info';
 
 const aboutPage = () => (
   <div>
-    <Hero img="/bcg.jpg" />
+    <Hero img="url('/bcg.jpg')" />
     <Info />
   </div>
 );

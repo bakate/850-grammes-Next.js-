@@ -8,9 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.7.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "cogo-toast": "^4.2.3",
     "dotenv": "^8.2.0",
     "downshift": "^5.0.6",
+    "emotion-theming": "^10.0.27",
     "isomorphic-unfetch": "^3.0.0",
     "lodash.debounce": "^4.0.8",
     "next": "9.3.4",

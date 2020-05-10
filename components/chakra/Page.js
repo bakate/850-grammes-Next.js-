@@ -1,22 +1,25 @@
 import { ColorModeProvider, CSSReset, ThemeProvider } from '@chakra-ui/core';
-import PropTypes from 'prop-types';
 import React from 'react';
-import Container from './chakra/Container';
-import theme from './chakra/theme';
+import Container from './Chakra/Container';
+import Header from './Chakra/Header';
+import Languages from './Chakra/Radios';
+import theme from './Chakra/theme';
+import Footer from './Footer';
 import Meta from './Meta';
+import Nav from './Nav';
 
 const Page = ({ children }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
     <ColorModeProvider>
       <Meta />
+      <Languages />
+      <Header />
+      <Nav />
       <Container>{children}</Container>
+      <Footer />
     </ColorModeProvider>
   </ThemeProvider>
 );
-
-Page.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Page;

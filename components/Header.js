@@ -1,9 +1,11 @@
-import Link from 'next/link';
+import { Grid, useColorMode } from '@chakra-ui/core';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import DarkModeSwitch from './chakra/DarkModeSwitch';
+import Hamburger from './chakra/Hamburger';
+import Logo from './chakra/Logo';
 import Nav from './Nav';
 import AutoComplete from './Search';
-import { HeaderStyles, LogoStyles } from './styles/HeaderStyles';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -16,20 +18,28 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Header = () => (
-  <HeaderStyles>
-    <LogoStyles>
-      <Link href="/">
-        <div className="logo">
-          <span className="span1">850</span>
-          <span className="span2">grammes</span>
-          <span className="span3">la vie dans la cuisine!</span>
-        </div>
-      </Link>
-    </LogoStyles>
-    <AutoComplete />
-    <Nav />
-  </HeaderStyles>
-);
+const Header = () => {
+  const { colorMode } = useColorMode();
+  const bgColor = { light: 'gray.100', dark: 'gray.500' };
+  const color = { light: 'black', dark: 'white' };
+
+  return (
+    // <HeaderStyles>
+    //   <LogoStyles>
+    <Grid
+      color={color[colorMode]}
+      bg={bgColor[colorMode]}
+      templateColumns={{ base: '1fr', md: '25% 25% 50%' }}
+      justifyContent="space-between"
+      alignItems="center"
+    >
+      <Logo />
+      <AutoComplete />
+      <Nav />
+      <DarkModeSwitch />
+      <Hamburger />
+    </Grid>
+  );
+};
 
 export default Header;

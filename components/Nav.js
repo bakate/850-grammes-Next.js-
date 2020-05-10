@@ -1,82 +1,47 @@
 /* eslint-disable react/display-name */
-import Link from 'next/link';
+import { Box } from '@chakra-ui/core';
 import { parseCookies } from 'nookies';
 import React from 'react';
-import { AiFillCaretDown } from 'react-icons/ai';
-import { useInfos } from './context/LocalState';
-import { NavStyles, OptionStyles } from './styles/NavStyles';
+import MenuItems from './chakra/MenuItems';
+import NavLinks from './chakra/NavLinks';
+import { useInfos } from './context';
 
 const token = parseCookies('fromClientSide');
 // console.log(token);
 
-export const CategoriesDropdown = () => {
-  const { categories } = useInfos();
-
-  return (
-    <OptionStyles>
-      <button type="button">
-        Recettes
-        <AiFillCaretDown />
-      </button>
-      <div className="categories">
-        {categories?.map(item => (
-          <div className="drops" key={item.id}>
-            <li>
-              <Link
-                href="/categories/[categorie]"
-                as={`/categories/${item.id}`}
-              >
-                <a>{item.name}</a>
-              </Link>
-            </li>
-          </div>
-        ))}
-      </div>
-    </OptionStyles>
-  );
-};
-
 const Nav = () => {
-  // const [withToken, setDestroyToken] = useState(token);
-  const { user, userLogout } = useInfos();
-
-  // const userLogout = () => {
-  //   setDestroyToken(destroyCookie(null, 'fromClientSide'));
-  //   Router.push('/');
-  //   cogoToast.success('Au Revoir et a tres vite');
-  // };
+  const { user, userLogout, show, categories } = useInfos();
 
   return (
-    <NavStyles>
+    // <NavStyles>
+    <Box
+      display={{ base: show ? 'block' : 'none', md: 'flex' }}
+      alignItems="center"
+      justifyContent="space-around"
+      textAlign={{ base: 'center' }}
+      fontSize="1em"
+    >
       {Object.entries(user).length > 0 && (
         <button type="button" style={{ color: 'orange' }}>
           {user?.user?.username}
         </button>
       )}
-      <Link href="/">
-        <a>Accueil</a>
-      </Link>
-      <Link href="/recipe">
-        <>
-          <CategoriesDropdown />
-        </>
-      </Link>
-      <Link href="/about">
-        <a>La Team</a>
-      </Link>
-      <Link href="/contact">
-        <a>Contact</a>
-      </Link>
+      <NavLinks href="/" title="accueil" />
+
+      <MenuItems items={categories} />
+
+      <NavLinks href="/about" title="La team" />
+
+      <NavLinks href="/contact" title="contact" />
+
       {Object.entries(user).length > 0 || Object.entries(token).length > 0 ? (
         <button type="button" onClick={userLogout}>
           Se Deconnecter
         </button>
       ) : (
-        <Link href="/signup">
-          <a>S'inscrire</a>
-        </Link>
+        <NavLinks href="/signup" title="S'inscrire" />
       )}
-    </NavStyles>
+    </Box>
   );
 };
 export default Nav;

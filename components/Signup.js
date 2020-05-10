@@ -5,15 +5,16 @@ import FormInputs from './chakra/FormInputs';
 import { useInfos } from './context';
 import Formify from './Form';
 
-const Signin = () => {
+const Signup = () => {
   const { userLogin } = useInfos();
 
   const { inputs, handleChange } = useForm({
+    username: '',
     email: '',
     password: '',
   });
 
-  const isEmpty = !inputs.email || !inputs.password;
+  const isEmpty = !inputs.email || !inputs.username || !inputs.password;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -30,6 +31,14 @@ const Signin = () => {
           </Alert>
         )}
         <FormInputs
+          iconName="info-outline"
+          label="Username"
+          type="text"
+          placeholder="Comment est-ce qu'on doit t'appeler"
+          value={inputs.username}
+          onChange={handleChange}
+        />
+        <FormInputs
           iconName="email"
           label="email"
           type="email"
@@ -41,7 +50,7 @@ const Signin = () => {
           iconName="lock"
           label="password"
           type="password"
-          placeholder="************"
+          placeholder="&ccedil;a reste secret"
           value={inputs.password}
           onChange={handleChange}
         />
@@ -54,11 +63,11 @@ const Signin = () => {
             variantColor="orange"
             _active={{ boxShadow: 'lg' }}
           >
-            Se Connecter
+            S'Inscrire
           </Button>
         )}
       </Formify>
     </form>
   );
 };
-export default Signin;
+export default Signup;

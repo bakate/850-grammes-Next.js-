@@ -1,18 +1,26 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import { Button } from '@chakra-ui/core';
 import Link from 'next/link';
+import React from 'react';
 import Hero from '../components/Hero';
 
 export default () => (
   <>
-    <Hero img="/kid.jpg">
-      <h2 style={{ textTransform: 'uppercase' }}>
-        Oups! Tu Fais du Hors Piste{' '}
-      </h2>
+    <Hero
+      img="url('/kid.jpg')"
+      title="Oups! Tu Fais du Hors Piste"
+      blackColor="orange.300"
+    >
       <Link href="/">
-        <a className="main-link" style={{ marginTop: '2rem' }}>
-          Retour àla maison
-        </a>
+        <Button
+          mt="2rem"
+          leftIcon="arrow-left"
+          variant="link"
+          variantColor="black"
+          size="lg"
+        >
+          Retour &Agrave; la Maison
+        </Button>
       </Link>
     </Hero>
   </>

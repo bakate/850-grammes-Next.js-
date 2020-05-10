@@ -1,12 +1,33 @@
+import { Grid, Heading } from '@chakra-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { HeroStyles } from './styles/HeroStyles';
 
 const Hero = ({ img, title, max, children, blackColor }) => (
-  <HeroStyles img={img} max={max} color={blackColor}>
-    <h1>{title}</h1>
+  <Grid
+    templateColumns="1fr"
+    justifyContent="center"
+    justifyItems="center"
+    alignItems="center"
+    alignContent="center"
+    minH={max ? '100vh' : '60vh'}
+    bgImage={img}
+    bgPos="center"
+    bgSize="cover"
+    bgRepeat="no-repeat"
+    color={blackColor}
+  >
+    <Heading
+      as="h1"
+      pt={8}
+      fontSize="3.5rem"
+      boxShadow="lg"
+      textTransform="uppercase"
+      letterSpacing="wider"
+    >
+      {title}
+    </Heading>
     {children}
-  </HeroStyles>
+  </Grid>
 );
 
 Hero.propTypes = {
@@ -19,6 +40,7 @@ Hero.propTypes = {
 
 Hero.defaultProps = {
   img: '/bcg.jpg',
+  blackColor: 'white',
 };
 
 export default Hero;

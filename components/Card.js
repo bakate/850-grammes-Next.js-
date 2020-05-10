@@ -1,7 +1,7 @@
+import { Box, Flex, Image, PseudoBox, Text } from '@chakra-ui/core';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ItemStyles from './styles/ItemStyles';
 import Title from './Title';
 
 const Card = ({ image, title, id, duration, category }) => {
@@ -21,33 +21,54 @@ const Card = ({ image, title, id, duration, category }) => {
 
   const [firstImage] = image;
   return (
-    <ItemStyles>
-      <Title title={title} center />
-      <div>
-        <Link href="/recettes/[id]" as={`/recettes/${id}`}>
-          <a>
-            <img src={firstImage.url} alt={title} />
-          </a>
-        </Link>
-      </div>
-      <div>
+    <Flex
+      border="1px solid gray.50"
+      borderRadius="md"
+      boxShadow="md"
+      transition="all .3s ease-in-out"
+      pos="relative"
+      flexDir="column"
+    >
+      <Link href="/recettes/[id]" as={`/recettes/${id}`}>
+        <PseudoBox
+          _hover={{
+            cursor: 'pointer',
+            opacity: '.7',
+          }}
+        >
+          <Title title={title} center />
+          <Image
+            w="full"
+            h="300px"
+            objectFit="cover"
+            transition="all .3s ease-in-out"
+            src={firstImage.url}
+            alt={title}
+          />
+        </PseudoBox>
+      </Link>
+
+      <Box>
         {hours >= 1 && (
-          <>
+          <Text>
             <b>{hours}</b> <span>heure{hours > 1 ? 's' : ''}</span>
-          </>
+            {hours >= 1 && minutes > 0 && <span> et </span>}
+            {minutes > 0 && (
+              <>
+                <b>{minutes}</b>
+                <span> minutes</span>
+              </>
+            )}
+          </Text>
         )}
-        {hours >= 1 && minutes > 0 && <span> et </span>}
-        {minutes > 0 && (
-          <>
-            <b>{minutes}</b>
-            <span> minutes</span>
-          </>
-        )}
+
         {category && (
-          <p>Niveau de Difficult&eacute;: {category?.difficulty} 💪💪</p>
+          <Text>
+            Niveau de Difficult&eacute;: {category?.difficulty} 💪💪
+          </Text>
         )}
-      </div>
-    </ItemStyles>
+      </Box>
+    </Flex>
   );
 };
 

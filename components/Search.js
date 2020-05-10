@@ -1,30 +1,17 @@
 /* eslint-disable react/display-name */
+import { Box, IconButton, Image, Input, InputGroup, InputRightElement, PseudoBox, useColorMode } from '@chakra-ui/core';
 import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
 import Router from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
-import { useInfos } from './context/LocalState';
-import { DropDown, DropDownItem } from './styles/DropDownStyles';
-
-const SearchStyles = styled.div`
-  position: relative;
-  margin: 0 auto;
-  input {
-    padding: 2rem;
-    font-size: 2rem;
-    border-color: ${({ theme }) => theme.green};
-    text-align: center;
-    &:focus {
-      border-color: ${({ theme }) => theme.primary};
-      outline: none;
-    }
-  }
-`;
+import { useInfos } from './context';
 
 const AutoComplete = () => {
   const { search, getItems } = useInfos();
-  // const router = useRouter();
+  const { colorMode } = useColorMode();
+  const bgColor = { light: 'gray.50', dark: 'gray.900' };
+  const color = { light: 'black', dark: 'white' };
+
   const handleChange = item => {
     Router.push(`/recettes/${item.id}`);
   };
@@ -37,7 +24,11 @@ const AutoComplete = () => {
   const findItemsButSlowly = debounce(findRecipes, 250);
   resetIdCounter();
   return (
-    <SearchStyles>
+    <Box
+      justifySelf={{ base: 'stretch', md: 'center' }}
+      position="relative"
+      pr={{ base: '1rem' }}
+    >
       <Downshift
         onChange={handleChange}
         itemToString={item => (item === null ? '' : item.title)}
@@ -50,47 +41,102 @@ const AutoComplete = () => {
           highlightedIndex,
         }) => (
           <div>
-            <input
-              {...getInputProps({
-                type: 'search',
-                placeholder: 'Une Recette ?',
-                id: 'search',
-                // className: loading ? 'loading' : 'input',
-                onChange: e => {
-                  e.persist();
-                  findItemsButSlowly(e.target.value);
-                },
-              })}
-            />
-
+            <InputGroup size="md">
+              <Input
+                variant="filled"
+                textAlign="center"
+                {...getInputProps({
+                  type: 'search',
+                  id: 'search',
+                  placeholder: 'Une Recette ?',
+                  onChange: e => {
+                    e.persist();
+                    findItemsButSlowly(e.target.value);
+                  },
+                })}
+              />
+              <InputRightElement width="5rem">
+                <IconButton
+                  variantColor="orange"
+                  size="md"
+                  ml={10}
+                  aria-label="Search database"
+                  icon="search"
+                />
+              </InputRightElement>
+            </InputGroup>
             {isOpen && (
-              <DropDown>
+              <Box
+                pos="absolute"
+                width="full"
+                zIndex="2"
+                border="1px solid"
+                // borderColor="gray.100"
+                bg={bgColor[colorMode]}
+              >
                 {search?.map((item, index) => {
                   const { image } = item;
                   const [firstImage] = image;
                   return (
-                    <DropDownItem
+                    <PseudoBox
                       {...getItemProps({ item })}
+                      color={color[colorMode]}
                       key={item.id}
-                      highlighted={index === highlightedIndex}
+                      p={4}
+                      borderBottom="2px solid"
+                      borderColor="gray.100"
+                      bg={
+                        index === highlightedIndex
+                          ? 'gray.400'
+                          : 'bgColor[colorMode]'
+                      }
+                      _hover={{ transition: 'all .3s ease-in-out' }}
+                      display="flex"
+                      alignItems="center"
+                      paddingLeft={index === highlightedIndex ? '2rem' : null}
+                      borderLeft="10px solid"
+                      borderLeftColor={
+                        index === highlightedIndex
+                          ? 'gray.400'
+                          : 'bgColor[colorMode]'
+                      }
+                      cursor={index === highlightedIndex ? 'pointer' : null}
                     >
-                      <img width="50" src={firstImage.url} alt={item.title} />
+                      <Image
+                        mr={4}
+                        width="50px"
+                        h="50px"
+                        src={firstImage.url}
+                        alt={item.title}
+                        objectFit="cover"
+                      />
                       {item.title}
-                    </DropDownItem>
+                    </PseudoBox>
                   );
                 })}
 
                 {inputValue.length > 1 && !search.length > 0 && (
-                  <DropDownItem>
+                  <PseudoBox
+                    borderBottom="2px solid"
+                    borderColor="gray.100"
+                    bg={bgColor[colorMode]}
+                    color={color[colorMode]}
+                    p={4}
+                    transition="all .3s ease-in-out"
+                    display="flex"
+                    alignItems="center"
+                    flexWrap="wrap"
+                    borderLeft="10px solid"
+                  >
                     Ohh! Pas encore de recette pour: <b>{inputValue}</b>
-                  </DropDownItem>
+                  </PseudoBox>
                 )}
-              </DropDown>
+              </Box>
             )}
           </div>
         )}
       </Downshift>
-    </SearchStyles>
+    </Box>
   );
 };
 

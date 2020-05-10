@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import { Box, Grid } from '@chakra-ui/core';
 import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
@@ -23,15 +24,28 @@ export const ItemsList = styled.div`
   }
 `;
 
+export const Gridy = ({ children }) => (
+  <Grid
+    templateColumns="repeat(auto-fit, minmax(350px, 1fr))"
+    justifyContent="center"
+    alignItems="center"
+    py={4}
+    gap="60px"
+    m={{ base: '0 auto' }}
+  >
+    {children}
+  </Grid>
+);
+
 const Category = ({ singleCategory }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
   return (
-    <Center>
+    <Box textAlign="center">
       <Title bgTitle={singleCategory?.name} center withRow />
-      <ItemsList>
+      <Gridy>
         {!singleCategory.recettes?.length && (
           <Title
             bgTitle="Sorry, aucune recette pour le moment"
@@ -42,8 +56,8 @@ const Category = ({ singleCategory }) => {
         {singleCategory?.recettes?.map(item => (
           <Card key={item.id} {...item} />
         ))}
-      </ItemsList>
-    </Center>
+      </Gridy>
+    </Box>
   );
 };
 export async function getStaticProps({ params }) {
