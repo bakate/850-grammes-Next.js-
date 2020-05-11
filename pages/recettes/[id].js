@@ -24,7 +24,7 @@ export default function Recipe({ singleRecipe }) {
     <PseudoBox
       as={Image}
       src={item.url}
-      px={{ base: '4' }}
+      // px={{ base: '4' }}
       mx="auto"
       // p="1rem"
       objectFit="cover"
@@ -47,7 +47,7 @@ export default function Recipe({ singleRecipe }) {
       boxShadow="lg"
       // alignContent="center"
       // justifyItems="center"
-      gap="1.5rem"
+      columnGap="1.5rem"
       templateColumns="1fr"
       justifyContent={{ base: 'center' }}
       // alignItems={{ base: 'center' }}
@@ -63,19 +63,21 @@ export default function Recipe({ singleRecipe }) {
         src={first?.url}
         alt={singleRecipe?.title}
         w="full"
-        h={{ base: '250px', md: '400px' }}
-        objectFit="cover"
-        // px={{ base: '8' }}
-        p={{ base: '4rem' }}
-        mt={{ md: '4' }}
+        h={{ base: '170px', md: '400px' }}
+        size="sm"
+        objectFit={{ base: 'cover', md: 'cover' }}
+        px={{ base: '6' }}
+        mx={{ base: 'auto' }}
+        // p={{ base: '4rem' }}
+        mt={{ base: '2', md: '4' }}
       />
 
       <Grid
         templateColumns="repeat(auto-fit, minmax(350px, 1fr))"
         justifyContent={{ base: 'center', md: 'space-between' }}
         alignItems={{ base: 'center', md: 'stretch' }}
-        p={{ base: '0', md: '8' }}
-        m={{ base: '8', md: '4' }}
+        p={{ base: '1', md: '8' }}
+        m={{ base: '4', md: '4' }}
         columnGap={2}
       >
         <Box pb={4}>
@@ -124,8 +126,7 @@ export default function Recipe({ singleRecipe }) {
           <SimpleGrid
             minChildWidth="250px"
             spacing="1rem"
-            // p="1rem"
-            px={{ base: '4', md: '6' }}
+            p={{ base: '.4rem', md: '6' }}
             mx={{ base: 'auto' }}
             // m="0 auto"
           >
