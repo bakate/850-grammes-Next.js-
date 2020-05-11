@@ -19,10 +19,9 @@ const Container = ({ children }) => {
         // align="center"
         color={color[colorMode]}
         bg={bgColor[colorMode]}
-        p={{ base: '0', md: '0 2rem' }}
+        p={{ md: '0 2rem' }}
         // maxW={1200}
         mx="auto"
-        spacing={1}
       >
         <ScrollButton />
         {children}

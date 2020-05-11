@@ -1,6 +1,7 @@
 import { Grid, useColorMode } from '@chakra-ui/core';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+import DarkModeSwitch from './chakra/DarkModeSwitch';
 import Hamburger from './chakra/Hamburger';
 import Logo from './chakra/Logo';
 import Nav from './Nav';
@@ -23,18 +24,21 @@ const Header = () => {
   const color = { light: 'black', dark: 'white' };
 
   return (
-    <Grid
-      color={color[colorMode]}
-      bg={bgColor[colorMode]}
-      templateColumns={{ base: '1fr', md: '25% 25% 50%' }}
-      justifyContent="space-between"
-      alignItems="center"
-    >
-      <Logo />
-      <AutoComplete />
-      <Nav />
-      <Hamburger />
-    </Grid>
+    <>
+      <Grid
+        color={color[colorMode]}
+        bg={bgColor[colorMode]}
+        templateColumns={{ base: '1fr', md: '25% 25% 50%' }}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Logo />
+        <AutoComplete />
+        <Nav />
+        <Hamburger />
+        <DarkModeSwitch />
+      </Grid>
+    </>
   );
 };
 

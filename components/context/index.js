@@ -74,7 +74,7 @@ function InfoStateProvider({ children }) {
         </div>
       );
     } else {
-      cogoToast.error("Quelque chose s'est mal pass&eacute;e");
+      cogoToast.error(<div>Quelque chose s'est mal pass&eacute;e</div>);
     }
     Router.push('/');
   };
@@ -83,7 +83,7 @@ function InfoStateProvider({ children }) {
     destroyCookie(null, 'fromClientSide');
     setUser({});
     Router.push('/');
-    cogoToast.success('Au Revoir et a tres vite');
+    cogoToast.success(<div>Au Revoir et &agrave; tr&egrave;s vite</div>);
   };
 
   return (

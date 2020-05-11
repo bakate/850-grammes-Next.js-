@@ -48,7 +48,7 @@ export default function Recipe({ singleRecipe }) {
       // alignContent="center"
       // justifyItems="center"
       gap="1.5rem"
-      templateColumns={{ base: '1fr' }}
+      templateColumns="1fr"
       justifyContent={{ base: 'center' }}
       // alignItems={{ base: 'center' }}
       // px={{ base: 'auto' }}
@@ -57,25 +57,24 @@ export default function Recipe({ singleRecipe }) {
       <Head>
         <title>{singleRecipe?.title}</title>
       </Head>
-      <Box>
-        <Title title={singleRecipe?.title} center withRow />
-        <Image
-          src={first?.url}
-          alt={singleRecipe?.title}
-          w="full"
-          h={{ base: '300px', md: '400px' }}
-          objectFit={{ base: 'contain', md: 'cover' }}
-          // px={{ base: '8' }}
-          p={{ base: '2.5rem' }}
-          mt={{ md: '4' }}
-        />
-      </Box>
+
+      <Title title={singleRecipe?.title} center withRow />
+      <Image
+        src={first?.url}
+        alt={singleRecipe?.title}
+        w="full"
+        h={{ base: '250px', md: '400px' }}
+        objectFit="cover"
+        // px={{ base: '8' }}
+        p={{ base: '2rem' }}
+        mt={{ md: '4' }}
+      />
 
       <Grid
         templateColumns="repeat(auto-fit, minmax(350px, 1fr))"
         justifyContent={{ base: 'center', md: 'space-between' }}
         alignItems={{ base: 'center', md: 'stretch' }}
-        p={{ base: '2', md: '8' }}
+        p={{ base: '0', md: '8' }}
         m={{ base: '8', md: '4' }}
         columnGap={2}
       >
@@ -113,7 +112,7 @@ export default function Recipe({ singleRecipe }) {
             <Title title="pr&eacute;paration:" withRow center />
           </Flex>
 
-          <Box p={{ base: '0 2rem' }} mx={{ base: 'auto' }}>
+          <Box px={{ base: '2rem' }} mx={{ base: 'auto' }}>
             <ReactMarkdown source={singleRecipe?.cooking} />
           </Box>
         </Box>

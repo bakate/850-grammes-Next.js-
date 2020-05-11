@@ -1,17 +1,20 @@
 import { IconButton, useColorMode } from '@chakra-ui/core';
+import { useInfos } from '../context';
 
 const DarkModeSwitch = () => {
+  const { height } = useInfos();
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <IconButton
-      // position="fixed"
+      position="fixed"
       size="sm"
       rounded="full"
-      // top={{ base: '4.1rem', md: '.4rem' }}
-      // right={{ base: '3.3rem', md: '.8rem' }}
+      opacity={height > 100 ? '1' : '0'}
+      top={{ base: '4.1rem', md: '.4rem' }}
+      right={{ base: '3.3rem', md: '.8rem' }}
       zIndex="tooltip"
       variant="solid"
-      mb={2}
+      mb={{ base: '2' }}
       variantColor="orange"
       aria-label="toggle color"
       color={colorMode === 'light' ? 'black' : 'white'}
