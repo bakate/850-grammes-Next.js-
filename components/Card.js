@@ -6,9 +6,9 @@ import Title from './Title';
 
 const Card = ({ image, title, id, duration, category }) => {
   let secondsLeft = duration * 60; // to convert minutes within seconds
-  const hours = ~~(secondsLeft / 3600); // to get hours the ~~ is equal to Math.floor
+  const hours = Math.floor(secondsLeft / 3600); // to get hours the ~~ is equal to Math.floor
   secondsLeft %= 3600; // to get the remaining minutes
-  const minutes = ~~(secondsLeft / 60);
+  const minutes = Math.floor(secondsLeft / 60);
 
   // const getDuration = secondsLeft=> {
   //   const hours = Math.floor(secondsLeft / 3600);
@@ -28,6 +28,7 @@ const Card = ({ image, title, id, duration, category }) => {
       transition="all .3s ease-in-out"
       pos="relative"
       flexDir="column"
+      px={{ base: '2' }}
     >
       <Link href="/recettes/[id]" as={`/recettes/${id}`}>
         <PseudoBox

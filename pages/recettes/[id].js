@@ -54,6 +54,7 @@ export default function Recipe({ singleRecipe }) {
       // alignItems={{ base: 'center' }}
       // px={{ base: 'auto' }}
       m={{ base: '2rem auto' }}
+      px={{ base: '1rem' }}
     >
       <Head>
         <title>{singleRecipe?.title}</title>

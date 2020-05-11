@@ -6,7 +6,7 @@ const DarkModeSwitch = () => {
     <IconButton
       position="fixed"
       size="sm"
-      top=".4rem"
+      top={{ base: '.8rem', md: '.4rem' }}
       right=".8rem"
       zIndex="tooltip"
       variant="solid"
