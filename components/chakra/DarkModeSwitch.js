@@ -8,6 +8,7 @@ const DarkModeSwitch = () => {
       size="sm"
       top=".4rem"
       right=".8rem"
+      zIndex="tooltip"
       variant="solid"
       variantColor="orange"
       aria-label="toggle color"

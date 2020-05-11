@@ -19,7 +19,7 @@ const Container = ({ children }) => {
         // align="center"
         color={color[colorMode]}
         bg={bgColor[colorMode]}
-        p="0 2rem"
+        p={{ base: '0', md: '0 2rem' }}
         // maxW={1200}
         mx="auto"
         spacing={1}

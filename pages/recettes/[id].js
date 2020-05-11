@@ -41,38 +41,43 @@ export default function Recipe({ singleRecipe }) {
 
   return (
     <Grid
-      mt={8}
-      border="1px solid white"
-      borderRadius="md"
+      mt={{ base: '1rem', md: '2rem' }}
+      border={{ md: '1px solid white' }}
+      borderRadius={{ md: 'md' }}
       boxShadow="lg"
+      // alignContent="center"
+      // justifyItems="center"
+      alignItems="center"
       gap="1.5rem"
+      // templateColumns={{ base: '1fr' }}
       justifyContent={{ base: 'center' }}
-      alignItems={{ base: 'center' }}
-      // margin={{ base: '0 auto', md: '2rem auto' }}
+      // alignItems={{ base: 'center' }}
+      // px={{ base: 'auto' }}
+      m={{ base: '2rem auto' }}
     >
       <Head>
         <title>{singleRecipe?.title}</title>
       </Head>
-      <div>
+      <Box>
         <Title title={singleRecipe?.title} center withRow />
         <Image
           src={first?.url}
           alt={singleRecipe?.title}
           w="full"
           h={{ base: '300px', md: '400px' }}
-          objectFit="cover"
-          px={{ base: '4' }}
-          pt={{ base: '4' }}
-          // mt={{ md: '2' }}
+          objectFit={{ base: 'contain', md: 'cover' }}
+          // px={{ base: '4' }}
+          p={{ base: '3rem' }}
+          mt={{ md: '4' }}
         />
-      </div>
+      </Box>
 
       <Grid
         templateColumns="repeat(auto-fit, minmax(350px, 1fr))"
-        justifyContent="space-between"
-        alignItems="stretch"
+        justifyContent={{ base: 'center', md: 'space-between' }}
+        alignItems={{ base: 'center', md: 'stretch' }}
         p={{ base: '2', md: '8' }}
-        m={{ base: '2', md: '4' }}
+        m={{ base: '8', md: '4' }}
         columnGap={2}
       >
         <Box pb={4}>
@@ -154,7 +159,7 @@ export default function Recipe({ singleRecipe }) {
 }
 
 Recipe.propTypes = {
-  singleRecipe: PropTypes.array,
+  singleRecipe: PropTypes.object.isRequired,
 };
 
 export async function getStaticProps({ params }) {
