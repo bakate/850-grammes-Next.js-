@@ -1,7 +1,6 @@
 import { Grid, useColorMode } from '@chakra-ui/core';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import DarkModeSwitch from './chakra/DarkModeSwitch';
 import Hamburger from './chakra/Hamburger';
 import Logo from './chakra/Logo';
 import Nav from './Nav';
@@ -34,7 +33,6 @@ const Header = () => {
       <Logo />
       <AutoComplete />
       <Nav />
-      <DarkModeSwitch />
       <Hamburger />
     </Grid>
   );

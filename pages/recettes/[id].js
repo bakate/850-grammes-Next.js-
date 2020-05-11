@@ -47,14 +47,12 @@ export default function Recipe({ singleRecipe }) {
       boxShadow="lg"
       // alignContent="center"
       // justifyItems="center"
-      alignItems="center"
       gap="1.5rem"
-      // templateColumns={{ base: '1fr' }}
+      templateColumns={{ base: '1fr' }}
       justifyContent={{ base: 'center' }}
       // alignItems={{ base: 'center' }}
       // px={{ base: 'auto' }}
       m={{ base: '2rem auto' }}
-      px={{ base: '1rem' }}
     >
       <Head>
         <title>{singleRecipe?.title}</title>
@@ -67,8 +65,8 @@ export default function Recipe({ singleRecipe }) {
           w="full"
           h={{ base: '300px', md: '400px' }}
           objectFit={{ base: 'contain', md: 'cover' }}
-          // px={{ base: '4' }}
-          p={{ base: '3rem' }}
+          // px={{ base: '8' }}
+          p={{ base: '2.5rem' }}
           mt={{ md: '4' }}
         />
       </Box>

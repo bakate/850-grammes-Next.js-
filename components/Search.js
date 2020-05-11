@@ -4,6 +4,7 @@ import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
 import Router from 'next/router';
 import React from 'react';
+import DarkModeSwitch from './chakra/DarkModeSwitch';
 import { useInfos } from './context';
 
 const AutoComplete = () => {
@@ -29,6 +30,7 @@ const AutoComplete = () => {
       position="relative"
       p={{ base: '1.8rem' }}
     >
+      <DarkModeSwitch />
       <Downshift
         onChange={handleChange}
         itemToString={item => (item === null ? '' : item.title)}
