@@ -10,8 +10,8 @@ const DarkModeSwitch = () => {
       size="sm"
       rounded="full"
       opacity={height > 100 ? '1' : '0'}
-      top={{ base: '4.1rem', md: '.4rem' }}
-      right={{ base: '3.3rem', md: '.8rem' }}
+      top=".4rem"
+      right=".8rem"
       zIndex="tooltip"
       variant="solid"
       mb={{ base: '2' }}

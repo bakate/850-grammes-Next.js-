@@ -66,7 +66,7 @@ export default function Recipe({ singleRecipe }) {
         h={{ base: '250px', md: '400px' }}
         objectFit="cover"
         // px={{ base: '8' }}
-        p={{ base: '2rem' }}
+        p={{ base: '3rem' }}
         mt={{ md: '4' }}
       />
 
