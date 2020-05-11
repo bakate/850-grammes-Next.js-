@@ -41,7 +41,7 @@ export default function Recipe({ singleRecipe }) {
 
   return (
     <Grid
-      mt={{ base: '1rem', md: '2rem' }}
+      mt={{ md: '2rem' }}
       border={{ md: '1px solid white' }}
       borderRadius={{ md: 'md' }}
       boxShadow="lg"
@@ -50,9 +50,9 @@ export default function Recipe({ singleRecipe }) {
       columnGap="1.5rem"
       templateColumns="1fr"
       justifyContent={{ base: 'center' }}
-      // alignItems={{ base: 'center' }}
+      alignItems={{ base: 'center' }}
       // px={{ base: 'auto' }}
-      m={{ base: '2rem auto' }}
+      m={{ base: '1rem auto' }}
     >
       <Head>
         <title>{singleRecipe?.title}</title>
@@ -63,10 +63,9 @@ export default function Recipe({ singleRecipe }) {
         src={first?.url}
         alt={singleRecipe?.title}
         w="full"
-        h={{ base: '170px', md: '400px' }}
-        size="sm"
+        h={{ base: '150px', md: '400px' }}
         objectFit={{ base: 'cover', md: 'cover' }}
-        px={{ base: '6' }}
+        px={{ base: '4rem' }}
         mx={{ base: 'auto' }}
         // p={{ base: '4rem' }}
         mt={{ base: '2', md: '4' }}
@@ -77,7 +76,7 @@ export default function Recipe({ singleRecipe }) {
         justifyContent={{ base: 'center', md: 'space-between' }}
         alignItems={{ base: 'center', md: 'stretch' }}
         p={{ base: '1', md: '8' }}
-        m={{ base: '4', md: '4' }}
+        m={{ base: '3', md: '4' }}
         columnGap={2}
       >
         <Box pb={4}>
