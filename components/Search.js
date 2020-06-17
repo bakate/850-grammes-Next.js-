@@ -1,5 +1,14 @@
 /* eslint-disable react/display-name */
-import { Box, IconButton, Image, Input, InputGroup, InputRightElement, PseudoBox, useColorMode } from '@chakra-ui/core';
+import {
+  Box,
+  IconButton,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
+  PseudoBox,
+  useColorMode
+} from '@chakra-ui/core';
 import Downshift, { resetIdCounter } from 'downshift';
 import debounce from 'lodash.debounce';
 import Router from 'next/router';
@@ -68,9 +77,10 @@ const AutoComplete = () => {
             {isOpen && (
               <Box
                 pos="absolute"
-                width="full"
+                width="79%"
                 zIndex="2"
                 border="1px solid"
+                borderRadius="md"
                 // borderColor="gray.100"
                 bg={bgColor[colorMode]}
               >
@@ -87,17 +97,17 @@ const AutoComplete = () => {
                       borderColor="gray.100"
                       bg={
                         index === highlightedIndex
-                          ? 'gray.400'
+                          ? 'gray.100'
                           : 'bgColor[colorMode]'
                       }
                       _hover={{ transition: 'all .3s ease-in-out' }}
                       display="flex"
                       alignItems="center"
                       paddingLeft={index === highlightedIndex ? '2rem' : null}
-                      borderLeft="10px solid"
+                      borderLeft="5px solid"
                       borderLeftColor={
                         index === highlightedIndex
-                          ? 'gray.400'
+                          ? 'gray.200'
                           : 'bgColor[colorMode]'
                       }
                       cursor={index === highlightedIndex ? 'pointer' : null}
@@ -126,9 +136,9 @@ const AutoComplete = () => {
                     display="flex"
                     alignItems="center"
                     flexWrap="wrap"
-                    borderLeft="10px solid"
+                    borderLeft="5px solid"
                   >
-                    Ohh! Pas encore de recette pour: <b>{inputValue}</b>
+                    Whoops! Pas encore de recette pour: <b>{inputValue}</b>
                   </PseudoBox>
                 )}
               </Box>

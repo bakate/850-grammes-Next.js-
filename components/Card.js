@@ -10,15 +10,6 @@ const Card = ({ image, title, id, duration, category }) => {
   secondsLeft %= 3600; // to get the remaining minutes
   const minutes = Math.floor(secondsLeft / 60);
 
-  // const getDuration = secondsLeft=> {
-  //   const hours = Math.floor(secondsLeft / 3600);
-  //   secondsLeft %= 3600;
-  //   const minutes = Math.floor(secondsLeft / 60);
-  //   secondsLeft %= 60;
-  //   console.log(hours, minutes, secondsLeft);
-
-  // }
-
   const [firstImage] = image;
   return (
     <Flex
@@ -54,6 +45,16 @@ const Card = ({ image, title, id, duration, category }) => {
           <Text>
             <b>{hours}</b> <span>heure{hours > 1 ? 's' : ''}</span>
             {hours >= 1 && minutes > 0 && <span> et </span>}
+            {minutes > 0 && (
+              <>
+                <b>{minutes}</b>
+                <span> minutes</span>
+              </>
+            )}
+          </Text>
+        )}
+        {hours < 1 && (
+          <Text>
             {minutes > 0 && (
               <>
                 <b>{minutes}</b>

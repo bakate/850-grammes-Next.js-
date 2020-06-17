@@ -5,10 +5,10 @@ import React from 'react';
 const Title = ({ bgTitle, center, title, withRow }) => (
   <SimpleGrid minChildWidth="75px" m="0 .5rem">
     <Box textAlign={center ? 'center' : 'left'} textTransform="capitalize">
-      <Heading as="h1" fontWeight="black">
+      <Heading as="h2" fontWeight="bold">
         {bgTitle}
       </Heading>
-      <Heading as="h2">{title}</Heading>
+      <Heading as="h6">{title}</Heading>
       <Divider
         pb={1}
         borderColor={withRow ? 'orange.300' : 'none'}

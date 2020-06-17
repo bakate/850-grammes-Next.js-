@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/core';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -69,7 +70,9 @@ const Info = () => (
         </b>
       </blockquote>
       <Link href="/">
-        <a className="main-link">Nos Recettes</a>
+        <Button leftIcon="arrow-back" variantColor="orange" variant="solid">
+          Nos Recettes
+        </Button>
       </Link>
     </div>
   </InfoStyles>
